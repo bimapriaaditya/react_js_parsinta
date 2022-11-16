@@ -1,4 +1,9 @@
-import { IconBrandFacebook, IconBrandTwitter } from '@tabler/icons';
+import {
+  IconBrandFacebook,
+  IconBrandGithub,
+  IconBrandTwitter,
+} from '@tabler/icons';
+import clsx from 'clsx';
 
 export default function App() {
   return (
@@ -13,9 +18,17 @@ export default function App() {
         </Button>
         <Button
           type='submit'
+          className={'bg-sky-600 text-white'}
           onClick={() => console.log('Twitter has clicked')}
         >
           <IconBrandTwitter />
+          Twitter
+        </Button>
+        <Button
+          onClick={() => console.log('Github has clicked')}
+          className={'bg-black text-white'}
+        >
+          <IconBrandGithub />
           Twitter
         </Button>
       </div>
@@ -24,13 +37,20 @@ export default function App() {
 }
 IconBrandTwitter;
 function Button(props) {
-  const { text, children } = props;
+  const {
+    text,
+    children,
+    type = 'button',
+    className = 'bg-blue-600 text-white',
+  } = props;
   return (
     <button
       {...props}
-      className={
-        '[&>svg]:w-5 [&>svg]:h-5 [&>svg]:stroke-1 bg-blue-600 text-white px-4 py-2 rounded flex gap-x-2'
-      }
+      type={type}
+      className={clsx(
+        className,
+        '[&>svg]:w-5 [&>svg]:h-5 [&>svg]:stroke-1 px-4 py-2 rounded flex gap-x-2'
+      )}
     >
       {text || children}
     </button>
