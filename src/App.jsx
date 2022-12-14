@@ -12,11 +12,10 @@ export default function App() {
     const lastName_value = last_name.current.value;
     const fullname = firstName_value + ' ' + lastName_value;
 
-    setName(fullname);
-    first_name.current.value = firstName_value;
-    last_name.current.value = lastName_value;
+    name = fullname;
+    // setName(fullname);
 
-    console.log(fullname);
+    console.log(name);
   };
 
   return (
