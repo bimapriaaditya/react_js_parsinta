@@ -13,7 +13,7 @@ export default function App() {
     const fullname = firstName_value + ' ' + lastName_value;
 
     name = fullname;
-    // setName(fullname);
+    setName(fullname);
 
     console.log(name);
   };
