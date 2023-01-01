@@ -18,6 +18,8 @@ export default function ReactBio() {
     console.log(name);
   };
 
+  console.log('reactBio');
+
   return (
     <Card className={'w-full'}>
       <Card.Header>Card Name</Card.Header>
