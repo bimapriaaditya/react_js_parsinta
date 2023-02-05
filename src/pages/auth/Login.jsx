@@ -12,6 +12,7 @@ export default function Login() {
   const checkState = () => {
     console.log({ email, password });
   };
+
   return (
     <Card>
       <Card.Header>Login To Applications</Card.Header>
