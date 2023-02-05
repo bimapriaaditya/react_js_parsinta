@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import ReactBio from './pages/ReactBio';
 import Home from './pages/Home';
+import Login from './pages/auth/Login';
 
 export default function App() {
   return (
@@ -14,10 +15,14 @@ export default function App() {
             <Link className='p-3 block' to='/bio'>
               About
             </Link>
+            <Link className='p-3 block' to='/auth'>
+              Login & Register
+            </Link>
           </nav>
           <Routes>
             <Route path='/home' exact element={<Home />} />
             <Route path='/bio' element={<ReactBio />} />
+            <Route path='/auth' element={<Login />} />
           </Routes>
         </BrowserRouter>
       </div>

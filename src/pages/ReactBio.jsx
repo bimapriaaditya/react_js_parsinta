@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import Button from '../components/Buttons/Button';
-import Card from '../components/Cards/Card';
+import Card from '../components/_Cards/Card';
 
 export default function ReactBio() {
   let [name, setName] = useState('name');
@@ -14,7 +14,6 @@ export default function ReactBio() {
 
     name = fullname;
     setName(fullname);
-
   };
 
   return (
