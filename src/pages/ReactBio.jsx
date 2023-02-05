@@ -3,7 +3,7 @@ import Button from '../components/Buttons/Button';
 import Card from '../components/Cards/Card';
 
 export default function ReactBio() {
-  let [name, setName] = useState('lorem');
+  let [name, setName] = useState('name');
   const first_name = useRef('');
   const last_name = useRef('');
 
@@ -15,10 +15,7 @@ export default function ReactBio() {
     name = fullname;
     setName(fullname);
 
-    console.log(name);
   };
-
-  console.log('reactBio');
 
   return (
     <Card className={'w-full'}>
