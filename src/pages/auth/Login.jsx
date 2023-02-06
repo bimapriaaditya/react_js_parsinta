@@ -6,11 +6,21 @@ import Label from '../../components/Labels/Label';
 import { IconBrandGithub } from '@tabler/icons';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
 
-  const checkState = () => {
-    console.log({ email, password });
+  const stateChange = (event) => {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
+  
+
+  const checkState = (e) => {
+    console.log({ email:form.email, password:form.password });
   };
 
   return (
@@ -22,16 +32,18 @@ export default function Login() {
             <Label htmlFor='login-email'>Email</Label>
             <Input
               type='email'
+              name='email'
               id='login-email'
-              onBlur={(e) => setEmail(e.target.value)}
+              onBlur={stateChange}
               placeholder='yourmain@mail.com'></Input>
           </div>
           <div>
             <Label htmlFor='login-pass'>Password</Label>
             <Input
               type='password'
+              name='password'
               id='login-pass'
-              onBlur={(e) => setPassword(e.target.value)}
+              onBlur={stateChange}
               placeholder='********'></Input>
           </div>
         </div>
