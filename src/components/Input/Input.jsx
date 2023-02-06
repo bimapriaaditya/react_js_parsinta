@@ -6,7 +6,7 @@ export default function Input(props) {
     <input
       {...props}
       type={type}
-      className={clsx(className, 'px-4 py-2 border border-slate-300 mb-4 outline-none focus:shadow-sm w-full')}
+      className={clsx(className, 'px-4 py-2 border border-slate-300 outline-none focus:shadow-sm w-full')}
     />
   );
 }
