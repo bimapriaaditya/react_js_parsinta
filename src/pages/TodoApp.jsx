@@ -2,7 +2,7 @@ import Card from '../components/_Cards/Card';
 import Input from '../components/Input/Input';
 import Button from '../components/Buttons/Button';
 import { useState } from 'react';
-import { IconX } from '@tabler/icons';
+import { IconX, IconSquare, IconSquareCheck } from '@tabler/icons';
 
 export default function TodoApp() {
   const [newTask, setNewTask] = useState('');
@@ -30,6 +30,16 @@ export default function TodoApp() {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  function handleComplete({ id, newStatus }) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, isCompleted: newStatus };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
+
   return (
     <Card>
       <Card.Header>This is Header</Card.Header>
@@ -54,7 +64,12 @@ export default function TodoApp() {
             {tasks.map((task) => (
               <li key={task.id} className='px-3 py-4 transition-all hover:shadow-md rounded-lg border border-slate-200'>
                 <div className='flex'>
-                  <span className='flex-grow'>{task.name}</span>
+                  <div className='flex-grow inline-flex gap-x-2'>
+                    <button type='button' onClick={(e) => handleComplete({ id: task.id, newStatus: !task.isCompleted })}>
+                      {task.isCompleted ? <IconSquareCheck /> : <IconSquare />}
+                    </button>
+                    {task.name}
+                  </div>
                   <div className='inline-flex gap-x-2'>
                     <button type='button' className='text-red-600' onClick={(e) => deleteTask(task.id)}>
                       <IconX />
