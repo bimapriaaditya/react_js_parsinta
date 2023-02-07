@@ -2,6 +2,7 @@ import Card from '../components/_Cards/Card';
 import Input from '../components/Input/Input';
 import Button from '../components/Buttons/Button';
 import { useState } from 'react';
+import { IconX } from '@tabler/icons';
 
 export default function TodoApp() {
   const [newTask, setNewTask] = useState('');
@@ -23,6 +24,10 @@ export default function TodoApp() {
       console.error('Task tidak boleh kosong');
     }
     setNewTask('');
+  }
+
+  function deleteTask(id) {
+    setTasks(tasks.filter((task) => task.id !== id));
   }
 
   return (
@@ -48,7 +53,14 @@ export default function TodoApp() {
           <ol className='space-y-2 max-h-[50vh] overflow-y-auto'>
             {tasks.map((task) => (
               <li key={task.id} className='px-3 py-4 transition-all hover:shadow-md rounded-lg border border-slate-200'>
-                {task.name}
+                <div className='flex'>
+                  <span className='flex-grow'>{task.name}</span>
+                  <div className='inline-flex gap-x-2'>
+                    <button type='button' className='text-red-600' onClick={(e) => deleteTask(task.id)}>
+                      <IconX />
+                    </button>
+                  </div>
+                </div>
               </li>
             ))}
           </ol>
