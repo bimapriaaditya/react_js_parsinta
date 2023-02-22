@@ -10,7 +10,6 @@ export default function TodoApp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(tasks);
     if (newTask !== '') {
       setTasks((prevTask) => [
         ...prevTask,
@@ -31,20 +30,19 @@ export default function TodoApp() {
   }
 
   function handleComplete({ id, newStatus }) {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return { ...task, isCompleted: newStatus };
-      }
-      return task;
-    });
-    setTasks(updatedTasks);
+    const index = tasks.findIndex((task) => task.id === id);
+    if (index !== -1) {
+      const updatedTasks = [...tasks];
+      updatedTasks[index].isCompleted = newStatus;
+      setTasks(updatedTasks);
+    }
   }
 
   return (
     <Card>
       <Card.Header>This is Header</Card.Header>
       <Card.Body>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='mb-3 flex gap-2'>
             <Input
               placeholder='New Task...'
@@ -53,14 +51,14 @@ export default function TodoApp() {
               onChange={(e) => {
                 setNewTask(e.target.value);
               }}></Input>
-            <Button type='submit' onClick={handleSubmit}>
-              Add Task
+            <Button type='submit'>
+              + Add Task
             </Button>
           </div>
         </form>
         <hr className='mt-6 mb-3' />
         {tasks.length > 0 ? (
-          <ol className='space-y-2 max-h-[50vh] overflow-y-auto'>
+          <ol className='space-y-2 max-h-[40vh] overflow-y-auto'>
             {tasks.map((task) => (
               <li key={task.id} className='px-3 py-4 transition-all hover:shadow-md rounded-lg border border-slate-200'>
                 <div className='flex'>
